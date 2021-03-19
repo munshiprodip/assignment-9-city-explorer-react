@@ -1,24 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import HeaderNav from "./component/HeaderNav/HeaderNav";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Home from "./component/Home/Home";
+import Login from "./component/Login/Login";
+import SelectRoute from "./component/SelectRoute/SelectRoute";
+import { createContext, useState } from "react";
+import AuthRoute from "./component/AuthRouth/AuthRoute";
+
+
+export const UserContext = createContext({})
 
 function App() {
+  const [LoggedInUserInfo, setLoggedInUserInfo] = useState();
+ 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserContext.Provider value={[ LoggedInUserInfo, setLoggedInUserInfo ]}>
+      <Router>
+        <HeaderNav></HeaderNav>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/home">
+            <Home />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+
+          <AuthRoute path="/select-route/:category">
+            <SelectRoute />
+          </AuthRoute>
+          
+
+        </Switch>
+      </Router>
+    </UserContext.Provider>
   );
 }
 
