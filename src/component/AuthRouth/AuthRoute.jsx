@@ -8,7 +8,7 @@ const AuthRoute = ({children, ...rest}) => {
         <Route
         {...rest}
         render={({ location }) =>
-            LoggedInUserInfo?(
+            LoggedInUserInfo?.displayName?(
             children
             ) : (
             <Redirect

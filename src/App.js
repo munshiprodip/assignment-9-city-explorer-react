@@ -7,6 +7,9 @@ import Login from "./component/Login/Login";
 import SelectRoute from "./component/SelectRoute/SelectRoute";
 import { createContext, useState } from "react";
 import AuthRoute from "./component/AuthRouth/AuthRoute";
+import Blog from "./component/Upcomming/Blog";
+import Destination from "./component/Upcomming/Destination";
+import Contact from "./component/Upcomming/Contact";
 
 
 export const UserContext = createContext({})
@@ -32,6 +35,18 @@ function App() {
           <AuthRoute path="/select-route/:category">
             <SelectRoute />
           </AuthRoute>
+
+          <Route path="/blog">
+            <Blog />
+          </Route>
+
+          <Route path="/contact">
+            <Contact />
+          </Route>
+          
+          <Route path="/destination">
+            <Destination />
+          </Route>
           
 
         </Switch>

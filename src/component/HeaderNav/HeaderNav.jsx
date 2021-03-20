@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import { UserContext } from "../../App";
 
 const HeaderNav = () => {
-    const [ LoggedInUserInfo ] = useContext(UserContext);
+    const [ LoggedInUserInfo, setLoggedInUserInfo ] = useContext(UserContext);
     const history = useHistory()
     const login = () =>{
       history.push('/login');
@@ -51,11 +51,16 @@ const HeaderNav = () => {
                 Contact
               </Link>
             </li>
+            
+            {
+                (LoggedInUserInfo?.email)? <li className="nav-item"> <p className="nav-link">{LoggedInUserInfo.displayName}</p></li> : ''
+            }
             <li className="nav-item">
                 {
-                    (LoggedInUserInfo?.email)? <p className="nav-link">{LoggedInUserInfo.displayName}</p> : <button onClick={login} className="btn btn-danger">LOGIN</button>
+                    (LoggedInUserInfo?.email)? <button onClick={()=>setLoggedInUserInfo({})} className="btn btn-danger ">LOGOUT</button> : <button onClick={login} className="btn btn-primary">LOGIN</button>
                 }
             </li>
+
           </ul>
         </div>
       </div>
