@@ -100,6 +100,7 @@ const Login = () => {
                         ...res,
                         displayName: name
                     }
+                    
                     handleResponse(newUser, res.success)
                 })
         }

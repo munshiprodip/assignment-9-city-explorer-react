@@ -2,12 +2,14 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from "./firebaseConfig";
 
+// Initialize firebase
 export const initializeAppfirebase = () => {
   if (firebase.apps.length === 0) {
     firebase.initializeApp(firebaseConfig);
   }
 };
 
+// Sign in with google
 export const googleSignIn = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   return firebase
@@ -27,6 +29,7 @@ export const googleSignIn = () => {
     });
 };
 
+// Sign up with email and password
 export const signupWithEmailAndPassword = (email, password, name) => {
   return firebase
     .auth()
@@ -46,6 +49,7 @@ export const signupWithEmailAndPassword = (email, password, name) => {
     });
 };
 
+// Updete name of current user
 export const updateUserDisplayName = (name) => {
   const user = firebase.auth().currentUser;
   user
@@ -60,6 +64,7 @@ export const updateUserDisplayName = (name) => {
     });
 };
 
+// Sign with email and password
 export const signInWithEmailAndPassword = (email, password) => {
   return firebase
     .auth()
@@ -80,6 +85,7 @@ export const signInWithEmailAndPassword = (email, password) => {
     });
 };
 
+// Signout
 export const signOut = () => {
   firebase
     .auth()
@@ -92,6 +98,7 @@ export const signOut = () => {
     });
 };
 
+// Sign in with facebook
 export const facebookSignIn = () => {
   const provider = new firebase.auth.FacebookAuthProvider();
   return firebase
